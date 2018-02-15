@@ -175,15 +175,15 @@ def show_align(alignment, annotations = False):
     template_n = []
     for t in template:
         if t == 'a':
-            template_n.append(0)
+            template_n.append(1)
         elif t == 'c':
             template_n.append(2)
         elif t == 'g':
-            template_n.append(8)
+            template_n.append(3)
         elif t == 't':
-            template_n.append(10)
+            template_n.append(4)
         elif t == '-':
-            template_n.append(14)
+            template_n.append(5)
         else:
             print("ERROR: " + t)
             break
@@ -194,9 +194,9 @@ def show_align(alignment, annotations = False):
         if t == '-':
             align1_n.append(15)
         elif t == template[count]:
-            align1_n.append(4)
-        else:
             align1_n.append(6)
+        else:
+            align1_n.append(0)
             #print(t + '---' + template[count])
         count = count + 1
 
@@ -208,9 +208,9 @@ def show_align(alignment, annotations = False):
         if t == '-':
             align2_n.append(15)
         elif t == template[count]:
-            align2_n.append(4)
-        else:
             align2_n.append(6)
+        else:
+            align2_n.append(0)
             #print(t + '---' + template[count])
         count = count + 1
 
@@ -276,6 +276,6 @@ def show_align(alignment, annotations = False):
     template_show = np.asarray(template_show)
 
 
-    plot.imshow(template_show, cmap="tab20")
+    plot.imshow(template_show, cmap="gist_rainbow")
 
     plot.show()
