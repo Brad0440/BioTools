@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plot
+import matplotlib.colors as colors
 
 def add_annotation(start, end, length, colour, comment):
     ann = []
@@ -32,7 +33,7 @@ def add_annotation(start, end, length, colour, comment):
     elif colour == "lightBrown":
         colourn = 11
     elif colour == "Pink":
-        colourn = 12
+        colourn = 6
     elif colour == "YellowGreen":
         colourn = 16
     elif colour == "lightYellow":
@@ -45,13 +46,13 @@ def add_annotation(start, end, length, colour, comment):
         raise TypeError("Invalid colour, please choose from 'yellow', 'brown', or 'pink'.")
 
     for i in range(0, start):
-        ann.append(15)
+        ann.append(2)
 
     for j in range(start, end):
         ann.append(colourn)
 
     for k in range(end, length):
-        ann.append(15)
+        ann.append(2)
 
     print("Annotation (" + colour + "): " + comment)
 
@@ -175,15 +176,15 @@ def show_align(alignment, annotations = False):
     template_n = []
     for t in template:
         if t == 'a':
-            template_n.append(1)
-        elif t == 'c':
-            template_n.append(2)
-        elif t == 'g':
             template_n.append(3)
-        elif t == 't':
+        elif t == 'c':
             template_n.append(4)
+        elif t == 'g':
+            template_n.append(4)
+        elif t == 't':
+            template_n.append(3)
         elif t == '-':
-            template_n.append(5)
+            template_n.append(2)
         else:
             print("ERROR: " + t)
             break
@@ -192,9 +193,9 @@ def show_align(alignment, annotations = False):
     count = 0
     for t in align1:
         if t == '-':
-            align1_n.append(15)
+            align1_n.append(2)
         elif t == template[count]:
-            align1_n.append(6)
+            align1_n.append(1)
         else:
             align1_n.append(0)
             #print(t + '---' + template[count])
@@ -206,9 +207,9 @@ def show_align(alignment, annotations = False):
     count = 0
     for t in align2:
         if t == '-':
-            align2_n.append(15)
+            align2_n.append(2)
         elif t == template[count]:
-            align2_n.append(6)
+            align2_n.append(1)
         else:
             align2_n.append(0)
             #print(t + '---' + template[count])
@@ -223,12 +224,12 @@ def show_align(alignment, annotations = False):
     for i in range(0,len(template_n)-1):
         ref.append(0)
 
-    ref.append(19)
+    ref.append(6)
 
     space = []
 
     for i in range(0,len(template_n)):
-        space.append(15)
+        space.append(2)
 
 
     for i in range (0,50):
@@ -275,7 +276,8 @@ def show_align(alignment, annotations = False):
 
     template_show = np.asarray(template_show)
 
+    cmap = colors.LinearSegmentedColormap.from_list("", ["red", "green", "white", "blue", "yellow", "orange", "deeppink"])
 
-    plot.imshow(template_show, cmap="gist_rainbow")
+    plot.imshow(template_show, cmap=cmap)
 
     plot.show()
