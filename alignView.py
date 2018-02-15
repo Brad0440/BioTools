@@ -5,45 +5,36 @@ import matplotlib.colors as colors
 def add_annotation(start, end, length, colour, comment):
     ann = []
 
-    #0 2 4 6 8 10 14 15
+    #orangered 5
+    #deeppink 6
+    #aqua 7
+    #slategrey 8
+    #lime 9
+    #navy 10
+    #teal 11
+    #black 12
+    #indigo 13
 
-    #light blue 1
-    #light orange 3
-    #light green 5
-    #light red 7
-    #light purple 9
-    #light brown 11
-    #pink 12
-    #light pink 13
-    #yellowGreen 16
-    #light yellowGreen 17
-    #aqua 18
-    #light aqua 19
-
-    if colour == "lightBlue":
-        colourn = 1
-    elif colour == "lightOrange":
-        colourn = 3
-    elif colour == "lightGreen":
+    if colour == "orangered":
         colourn = 5
-    elif colour == "lightRed":
-        colourn = 7
-    elif colour == "lightPurple":
-        colourn = 9
-    elif colour == "lightBrown":
-        colourn = 11
-    elif colour == "Pink":
+    elif colour == "deeppink":
         colourn = 6
-    elif colour == "YellowGreen":
-        colourn = 16
-    elif colour == "lightYellow":
-        colourn = 17
     elif colour == "aqua":
-        colourn = 18
-    elif colour == "lightAqua":
-        colourn = 19
+        colourn = 7
+    elif colour == "slategray" or colour == "slategrey":
+        colourn = 8
+    elif colour == "lime":
+        colourn = 9
+    elif colour == "navy":
+        colourn = 10
+    elif colour == "teal":
+        colourn = 11
+    elif colour == "black":
+        colourn = 12
+    elif colour == "indigo":
+        colourn = 13
     else:
-        raise TypeError("Invalid colour, please choose from 'yellow', 'brown', or 'pink'.")
+        raise TypeError("Invalid colour, please choose from 'orangered', 'deeppink', 'aqua', 'slategrey', 'lime', 'navy', 'teal', 'black', or 'indigo'.")
 
     for i in range(0, start):
         ann.append(2)
@@ -224,7 +215,7 @@ def show_align(alignment, annotations = False):
     for i in range(0,len(template_n)-1):
         ref.append(0)
 
-    ref.append(6)
+    ref.append(13)
 
     space = []
 
@@ -276,7 +267,7 @@ def show_align(alignment, annotations = False):
 
     template_show = np.asarray(template_show)
 
-    cmap = colors.LinearSegmentedColormap.from_list("", ["red", "green", "white", "blue", "yellow", "orange", "deeppink"])
+    cmap = colors.LinearSegmentedColormap.from_list("", ["red", "green", "white", "blue", "yellow", "orangered", "deeppink", "aqua", "slategrey", "lime", "navy", "teal", "black", "indigo"])
 
     plot.imshow(template_show, cmap=cmap)
 
