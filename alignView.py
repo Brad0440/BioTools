@@ -226,8 +226,12 @@ def show_align(alignment, annotations = False):
     for i in range (0,50):
         template_show.append(space)
 
+    height = [0]
+
     if annotations != False:
         labels = []
+        for i in range(0,80):
+            template_show.append(space)
         for ann in annotations:
             start = ann[0]
             end = ann[1]
@@ -235,11 +239,17 @@ def show_align(alignment, annotations = False):
             colour = ann[3]
             length = len(template_n)
             labels.append(add_annotation(start, end, length, colour, comment))
+        c = 0
         for l in labels:
             for i in range(0,80):
-                template_show.append(l)
-            for i in range(0,20):
                 template_show.append(space)
+            for i in range(0,80):
+                template_show.append(l)
+            for i in range(0,80):
+                template_show.append(space)
+            height.append(height[len(height)-1]+200)
+            plot.text(annotations[c][0] + 40, height[c+1], annotations[c][2])
+            c = c + 1
 
     for i in range (0,30):
         template_show.append(space)
@@ -267,7 +277,7 @@ def show_align(alignment, annotations = False):
 
     template_show = np.asarray(template_show)
 
-    cmap = colors.LinearSegmentedColormap.from_list("", ["red", "green", "white", "blue", "yellow", "orangered", "deeppink", "aqua", "slategrey", "lime", "navy", "teal", "black", "indigo"])
+    cmap = colors.LinearSegmentedColormap.from_list("", ["red", "grey", "white", "blue", "darkorange", "orangered", "deeppink", "aqua", "slategrey", "lime", "navy", "teal", "black", "indigo"])
 
     plot.imshow(template_show, cmap=cmap)
 
